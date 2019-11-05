@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk add --update curl
 # Get latest release version and download it
-RUN set -ex && export PG_VERSION=$(curl -Is https://github.com/prometheus/pushgateway/releases/latest | grep Location | cut -d '/' -f8 | cut -c2-6) && \
+RUN export PG_VERSION=$(curl -Is https://github.com/prometheus/pushgateway/releases/latest | grep Location | cut -d '/' -f8 | cut -c2-6) && \
     cd /tmp && \ 
     wget https://github.com/prometheus/pushgateway/releases/download/v${PG_VERSION}/pushgateway-${PG_VERSION}.linux-armv7.tar.gz && \
     tar xzvf pushgateway-${PG_VERSION}.linux-armv7.tar.gz && \
